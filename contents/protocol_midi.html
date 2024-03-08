@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MIDI protocol &mdash; MIDI to DMX Platform 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/lense-platforms.css?v=64eb0f87" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/links.css?v=7a4609b2" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=2709fde1"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Schematics - MIDI 2 DMX Platform" href="schematics.html" />
+    <link rel="prev" title="DMX Protocol" href="protocol_dmx.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            MIDI to DMX Platform
+              <img src="../_static/logo-platforms_git.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">MIDI and DMX</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="protocol_dmx.html">     DMX protocol</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">     MIDI protocol</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#midi-applications">MIDI applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#instruments-and-sequencers">Instruments and sequencers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#typical-midi-setup">Typical MIDI setup</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#low-level-protocol">Low-level Protocol</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#communication-protocol">Communication protocol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#physical-interface">Physical interface</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#application-layer-of-the-protocol">Application layer of the protocol</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#channels">Channels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#main-midi-messages">Main MIDI messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#playing-or-stopping-a-note">Playing or stopping a note</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#after-touch">After Touch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#control-changes">Control changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#program-changes-and-internal-messages">Program changes and internal messages</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#to-resume">To resume</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#note-on-and-note-off">NOTE_ON and NOTE_OFF</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Fast Access</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="schematics.html">     Schematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinouts.html">     Pinouts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="material_testing.html">     Testing procedures</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Materials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="material_overview.html">     Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="material_board_l476.html">     L476RG version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="material_board_f767.html">     F767ZI version</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributors</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="main_contributors.html">     Main contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="other_contributors.html">     Students contributions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MIDI to DMX Platform</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">MIDI protocol</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/contents/protocol_midi.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="midi-protocol">
+<h1>MIDI protocol<a class="headerlink" href="#midi-protocol" title="Link to this heading"></a></h1>
+<p><strong>MIDI</strong> is for <strong>Musical Instrument Digital Interface</strong>. It’s both a <strong>communication protocol</strong> to transfer data from keyboards (or controllers) to digital instruments (software or hardware synthetizers) and a <strong>file format</strong> to store musical data.</p>
+<section id="midi-applications">
+<h2>MIDI applications<a class="headerlink" href="#midi-applications" title="Link to this heading"></a></h2>
+<section id="instruments-and-sequencers">
+<h3>Instruments and sequencers<a class="headerlink" href="#instruments-and-sequencers" title="Link to this heading"></a></h3>
+</section>
+<section id="typical-midi-setup">
+<h3>Typical MIDI setup<a class="headerlink" href="#typical-midi-setup" title="Link to this heading"></a></h3>
+</section>
+</section>
+<section id="low-level-protocol">
+<h2>Low-level Protocol<a class="headerlink" href="#low-level-protocol" title="Link to this heading"></a></h2>
+<section id="communication-protocol">
+<h3>Communication protocol<a class="headerlink" href="#communication-protocol" title="Link to this heading"></a></h3>
+<p>MIDI protocol is based on a serial communication protocol called RS232. This protocol</p>
+</section>
+<section id="physical-interface">
+<h3>Physical interface<a class="headerlink" href="#physical-interface" title="Link to this heading"></a></h3>
+<p>MIDI IN, MIDI OUT, MIDI THRU</p>
+<p>5 pins</p>
+<p>SCHEMA – Input with optocoupler and output…</p>
+</section>
+</section>
+<section id="application-layer-of-the-protocol">
+<h2>Application layer of the protocol<a class="headerlink" href="#application-layer-of-the-protocol" title="Link to this heading"></a></h2>
+<section id="channels">
+<h3>Channels<a class="headerlink" href="#channels" title="Link to this heading"></a></h3>
+</section>
+<section id="main-midi-messages">
+<h3>Main MIDI messages<a class="headerlink" href="#main-midi-messages" title="Link to this heading"></a></h3>
+</section>
+<section id="playing-or-stopping-a-note">
+<h3>Playing or stopping a note<a class="headerlink" href="#playing-or-stopping-a-note" title="Link to this heading"></a></h3>
+<p>To play a note, a first type of message, called NOTE_ON, is used.</p>
+<p>This message is composed of 3 bytes :</p>
+<ul class="simple">
+<li><p>Status byte : 1001 CCCC</p></li>
+<li><p>Data byte 1 : 0PPP PPPP</p></li>
+<li><p>Data byte 2 : 0VVV VVVV</p></li>
+</ul>
+<p>where C is the channel (coded on 4 bits), P is the note value (coded on 7 bits) and V is the velocity (coded on 7 bits).</p>
+<figure class="align-default">
+<img alt="../_images/note_on.png" src="../_images/note_on.png" />
+</figure>
+<p>To play the C3 note (value 60), at a velocity of 52, from the channel 3, the MIDI message is the folowing : (1001 0011) (0011 1100) (0011 0100)</p>
+<p>To stop playing a note, a second type of message, called NOTE_OFF, is used.</p>
+<p>This message is composed of 3 bytes :</p>
+<ul class="simple">
+<li><p>Status byte : 1000 CCCC</p></li>
+<li><p>Data byte 1 : 0PPP PPPP</p></li>
+<li><p>Data byte 2 : 0VVV VVVV</p></li>
+</ul>
+<p>where C is the channel (coded on 4 bits), P is the note value (coded on 7 bits) and V is the velocity. In this case, the velocity is often set to 0.</p>
+<figure class="align-default">
+<img alt="../_images/note_off.png" src="../_images/note_off.png" />
+</figure>
+</section>
+<section id="after-touch">
+<h3>After Touch<a class="headerlink" href="#after-touch" title="Link to this heading"></a></h3>
+</section>
+<section id="control-changes">
+<h3>Control changes<a class="headerlink" href="#control-changes" title="Link to this heading"></a></h3>
+<p>There are standard values for controlling instruments. For example, the number 7 is often used to control the main volume of the instruments, the number 8 for the balance…</p>
+</section>
+<section id="program-changes-and-internal-messages">
+<h3>Program changes and internal messages<a class="headerlink" href="#program-changes-and-internal-messages" title="Link to this heading"></a></h3>
+</section>
+</section>
+<section id="to-resume">
+<h2>To resume<a class="headerlink" href="#to-resume" title="Link to this heading"></a></h2>
+<p>MIDI communications are based on the <strong>RS232</strong> (or Serial) protocol fot the low-level layer data transmission. The baudrate is <strong>31250 bauds</strong>.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>A <strong>MIDI message</strong> is composed of <strong>different bytes</strong>.</p>
+<p>The <strong>first byte</strong>, <em>always greater than 128</em>, corresponds to a <strong>message type</strong> :
+* NOTE_ON - 0x90 - to start a specific note
+* NOTE_OFF - 0x80 - to stop a specific note
+* CC - 0xB0 - to change other parameters (as volume, balance…)
+* PC - 0xC0 - to change the kind of instruments (piano, percussion…)
+* …</p>
+<p>Depending on the message type, other bytes can be sent.</p>
+<section id="note-on-and-note-off">
+<h3>NOTE_ON and NOTE_OFF<a class="headerlink" href="#note-on-and-note-off" title="Link to this heading"></a></h3>
+<p>The <strong>second bytes</strong> is the value of the <strong>note to play</strong> or stop. This value is between 0 and 127, corresponding to notes from C-1 (value 0) to G9 (value 127).</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="protocol_dmx.html" class="btn btn-neutral float-left" title="DMX Protocol" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="schematics.html" class="btn btn-neutral float-right" title="Schematics - MIDI 2 DMX Platform" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Julien Villemejane.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
